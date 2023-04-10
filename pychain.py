@@ -186,7 +186,9 @@ receiver = st.text_input("receiver")
 
 # @TODO:
 # Add an input area where you can get a value for `amount` from the user.
-amount = st.text_input("amount")
+
+# added a min value so user can't input invalid amounts
+amount = st.text_input("amount", min_value=0.0)
 
 if st.button("Add Block"):
     prev_block = pychain.chain[-1]
@@ -197,7 +199,7 @@ if st.button("Add Block"):
     # which is set equal to a `Record` that contains the `sender`, `receiver`,
     # and `amount` values
     new_block = Block(
-        data=input_data,
+        data=Record(sender, receiver, amount),
         creator_id=42,
         prev_hash=prev_block_hash
     )
