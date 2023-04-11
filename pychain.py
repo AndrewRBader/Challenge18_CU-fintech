@@ -178,17 +178,15 @@ pychain = setup()
 
 # @TODO:
 # Add an input area where you can get a value for `sender` from the user.
-sender = st.text_input("sender")
+sender = st.text_input("Sender Input")
 
 # @TODO:
 # Add an input area where you can get a value for `receiver` from the user.
-receiver = st.text_input("receiver")
+receiver = st.text_input("Receiver Input")
 
 # @TODO:
 # Add an input area where you can get a value for `amount` from the user.
-
-# added a min value so user can't input invalid amounts
-amount = st.text_input("amount", min_value=0.0)
+amount = st.text_input("Amount Input")
 
 if st.button("Add Block"):
     prev_block = pychain.chain[-1]
@@ -199,11 +197,10 @@ if st.button("Add Block"):
     # which is set equal to a `Record` that contains the `sender`, `receiver`,
     # and `amount` values
     new_block = Block(
-        data=Record(sender, receiver, amount),
+        record=Record(sender, receiver, amount),
         creator_id=42,
         prev_hash=prev_block_hash
     )
-
     pychain.add_block(new_block)
     st.balloons()
 
